@@ -13,12 +13,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($stmt->fetch()) {
             echo "Name already taken.";
         } else {
-            $stmt = $pdo->prepare("INSERT INTO students (name, email, password) VALUES (:name, :email, :password)");
-            $stmt->execute([
-                'name' => $name,
-                'email' => $email,
-                'password' => $password
-            ]);
+                $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+                $stmt = $pdo->prepare("INSERT INTO students (name, email, password) VALUES (:name, :email, :password)");
+                $stmt->execute([
+                    'name' => $name,
+                    'email' => $email,
+                    'password' => $hashed_password
+                ]);
             $success_message = "User Registered Successfully";
             header("Location: login.php");
             exit();
