@@ -3,6 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>Upload File</title>
+    <style>
+        .gallery img {
+            width: 150px;
+            height: auto;
+            display: block;
+            margin-bottom: 8px;
+        }
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .gallery-item {
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
     <h2>Upload a File</h2>
@@ -51,7 +67,7 @@ if (isset($_POST['submit'])) {
         $upload_path = $upload_dir . $new_name;
 
         if (move_uploaded_file($_FILES['file']['tmp_name'], $upload_path)) {
-            echo "<p style='color:green;'>File uploaded successfully!</p>";
+            echo "";
             // Step 4: Display uploaded file
             echo "<h3>Uploaded File:</h3>";
             if ($file_type === "image/jpeg" || $file_type === "image/png") {
@@ -81,6 +97,24 @@ if (isset($_POST['delete_file'])) {
         unlink($delete_path);
         echo "<p style='color:green;'>File deleted successfully!</p>";
     }
+}
+
+
+// ✅ Show Gallery
+$files = glob("uploads/*.{jpg,jpeg,png}", GLOB_BRACE);
+if ($files) {
+    echo "<h2>Gallery</h2>";
+    echo "<div class='gallery'>";
+    foreach ($files as $file) {
+        echo "<div class='gallery-item'>";
+        echo "<img src='$file' alt='image'>";
+        echo "<form method='post' class='delete-form'>
+                <input type='hidden' name='delete_file' value='$file'>
+                <button type='submit' onclick=\"return confirm('Delete this file?')\">Delete</button>
+              </form>";
+        echo "</div>";
+    }
+    echo "</div>";
 }
 ?>
 </body>
