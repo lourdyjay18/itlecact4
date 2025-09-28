@@ -13,13 +13,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($stmt->fetch()) {
             echo "Name already taken.";
         } else {
-                $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-                $stmt = $pdo->prepare("INSERT INTO students (name, email, password) VALUES (:name, :email, :password)");
-                $stmt->execute([
-                    'name' => $name,
-                    'email' => $email,
-                    'password' => $hashed_password
-                ]);
+            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+            $stmt = $pdo->prepare("INSERT INTO students (name, email, password) VALUES (:name, :email, :password)");
+            $stmt->execute([
+                'name' => $name,
+                'email' => $email,
+                'password' => $hashed_password
+            ]);
             $success_message = "User Registered Successfully";
             header("Location: login.php");
             exit();
@@ -33,36 +33,44 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="styles.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
 </head>
 <body>
-    <h1>Register</h1>
-    <?php if (isset($error_message)):?>
-        <p class="error"> <?= $error_message?> </p>
-    <?php endif; ?>
-    <?php if (isset($success_message)): ?>
-        <p class="success"><?= $success_message ?> <a href="login.php">Login</a></p>
-    <?php endif; ?>
-    <form method="POST">
-        <label>
-            Name:
-            <input type="text" name="name" required maxlength="100">
-        </label>
-        <br><br>
-        <label>
-            Email:
-            <input type="email" name="email" required maxlength="100">
-        </label>
-        <br><br>
-        <label>
-            Password:
-            <input type="password" name="password" required maxlength="100">
-        </label>
-        <br><br>
-        <button type="submit">Register</button>
-    </form>
-    <p>Already have an account? <a href="login.php">Login here</a></p>
+    <div class="container">
+        <h1>Register</h1>
+
+        <?php if (isset($error_message)):?>
+            <p class="error"> <?= $error_message?> </p>
+        <?php endif; ?>
+
+        <?php if (isset($success_message)): ?>
+            <p class="success"><?= $success_message ?> <a href="login.php">Login</a></p>
+        <?php endif; ?>
+<div>
+        <form method="POST">
+            <label>
+                Name:
+                <input type="text" name="name" required maxlength="100">
+            </label>
+            <br><br>
+            <label>
+                Email:
+                <input type="email" name="email" required maxlength="100">
+            </label>
+            <br><br>
+            <label>
+                Password:
+                <input  type="password" name="password" required maxlength="100">
+            </label>
+            <br><br>
+            <button type="submit">Register</button>
+        </form>
+        </div>
+
+        <p>Already have an account? <a href="login.php">Login here</a></p>
+    </div>
 </body>
 </html>

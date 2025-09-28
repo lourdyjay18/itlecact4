@@ -26,29 +26,23 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <link rel="stylesheet" href="styles.css"> 
 </head>
 <body>
-    <h1>Login</h1>
-    <form method="POST">
-        <label>
-            Name:
-            <input type="text" name="name" required maxlength="100">
-        </label>
-        <br><br>
-        <label>
-            Password:
-            <input type="password" name="password" required maxlength="100">
-        </label>
-        <br><br>
-        <button type="submit">Login</button>
-        <a href="register.php"> Register </a>
-
-    </form>
+    <div class="container">
+        <h2>Login</h2>
+        <form action="login.php" method="post">
+            <input type="text" name="name" placeholder="Username" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <input type="submit" value="Login">
+        </form>
+        <a href="register.php">Don’t have an account? Sign up</a>
+    </div>
 </body>
 </html>

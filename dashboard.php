@@ -20,23 +20,21 @@ $user_email = $_SESSION['user_email'] ?? 'Not provided';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>
-        Welcome, <?=($name)?>
-    </h1>
-    <p>
-        <a href="logout.php">Logout</a><br>
-        <a href="upload.php">Upload</a>
-    </p>
-
-    <hr>
-
-    <h2> Quick Account Info</h2>
-    <ul>
-        <li>User ID: <?=htmlspecialchars($_SESSION['user_id'])?></li>
-        <li>Name: <?=htmlspecialchars($name)?></li>
-        <li>Email: <?=htmlspecialchars($user_email)?></li>
-    </ul>
+  <div class="dashboard-container">
+      <h1>Welcome, <?=($name)?></h1>
+      <p>
+          <a href="logout.php">Logout</a>
+          <a href="upload.php">Upload</a>
+      </p>
+      <hr>
+      <h2>Quick Account Info</h2>
+      <ul>
+          <li>User ID: <?=htmlspecialchars($_SESSION['user_id'])?></li>
+          <li>Name: <?=htmlspecialchars($name)?></li>
+          <li>Email: <?=htmlspecialchars($user_email)?></li>
+      </ul>
+  </div>
 </body>
-</html>
