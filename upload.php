@@ -3,26 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Upload File</title>
-<<<<<<< HEAD
-    <style>
-        .gallery img {
-            width: 150px;
-            height: auto;
-            display: block;
-            margin-bottom: 8px;
-        }
-        .gallery {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 16px;
-        }
-        .gallery-item {
-            text-align: center;
-        }
-    </style>
-=======
+
+
     <link rel="stylesheet" href="styles.css">
->>>>>>> bedabda7c06f34cf35e51581b20cd892573ff066
+
 </head>
 <body>
     <div class="upload-container">
